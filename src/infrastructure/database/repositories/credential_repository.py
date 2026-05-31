@@ -1,15 +1,23 @@
-# from src.domain.interfaces.repositories import CredentialRepository
-# import sqlite3
+from src.domain.entities.credential import Credential
+from src.domain.interfaces.repositories import CredentialRepository
+from sqlite3 import Connection
 
 
-# class SQLiteCredentialRepository(CredentialRepository):
+class SQLiteCredentialRepository(CredentialRepository):
 
-#     def __init__(self, db_path) -> None:
-#         self._db_path = db_path
+    def __init__(self, connection: Connection) -> None:
+        self._connection = connection
 
-#     def execute(self, query, params=()):
-#         with sqlite3.connect(self._db_path) as db:
-#             cursor = db.cursor()
-#             cursor.execute(query, params)
-#             cursor.close()
-#             db.commit()
+    def add_credential(self, credential: Credential):
+        c = self._connection.cursor()
+        c.execute(
+            "INSERT INTO credentials VALUES (?,?,?,?,?,?,?,?)", credential.to_tuple()
+        )
+        self._connection.commit()
+        c.close()
+
+    def execute(self, query, params=()):
+        c = self._connection.cursor()
+        c.execute(query, params)
+        self._connection.commit()
+        c.close()

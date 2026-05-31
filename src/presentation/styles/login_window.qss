@@ -1,0 +1,80 @@
+#title {
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+}
+
+QWidget {
+    background-color: #121420;
+    margin: 0;
+}
+
+InputText QLabel {
+    color: #fff;
+    font-family: Verdana;
+    font-weight: 100;
+    margin: 0;
+}
+
+InputText QLineEdit[state="ok"] {
+    margin: 0;
+    color: #fff;
+    font-family: sans-serif;
+    background-color: #2C2B3C;
+    border: 1px solid #403F4C;
+    padding: 2px;
+    border-radius: 6px;
+    font-weight: 100;
+}
+
+InputText QLineEdit::focus {
+    border-color: #fff;
+}
+
+InputText QLineEdit[state="error"] {
+    margin: 0;
+    color: #fff;
+    font-family: sans-serif;
+    background-color: #2C2B3C;
+    border: 1px solid red;
+    padding: 2px;
+    border-radius: 6px;
+    font-weight: 100;
+}
+
+Button {
+    background-color: #157113;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #fff;
+    padding: 2px;
+    margin: 0;
+}
+
+Button::hover {
+    background-color: #0f520e;
+}
+
+Button::pressed {
+    background-color: #0b390a;
+}
+
+#cancel {
+    background-color: #2C2B3C;
+}
+
+#cancel::hover {
+    background-color: #1f1e2a;
+}
+
+#cancel::pressed {
+    background-color: #16151e;
+}
+
+#register {
+    color: #2852ae;
+}
+
+#register::hover {
+    color: #2d5dc4;
+}

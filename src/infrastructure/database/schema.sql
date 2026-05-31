@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
 
@@ -10,7 +10,7 @@ CREATE TABLE users (
     last_login TEXT
 );
 
-CREATE TABLE vaults (
+CREATE TABLE IF NOT EXISTS vaults (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
 
@@ -22,11 +22,11 @@ CREATE TABLE vaults (
         ON DELETE CASCADE
 );
 
-CREATE TABLE credentials (
+CREATE TABLE IF NOT EXISTS credentials (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     vault_id INTEGER NOT NULL,
 
-    site TEXT NOT NULL,
+    app TEXT NOT NULL,
     username TEXT NOT NULL,
 
     password_encrypted BLOB NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE credentials (
         ON DELETE CASCADE
 );
 
-CREATE INDEX idx_users_username ON users(username);
+CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
 
-CREATE INDEX idx_vaults_user_id ON vaults(user_id);
+CREATE INDEX IF NOT EXISTS idx_vaults_user_id ON vaults(user_id);
 
-CREATE INDEX idx_credentials_vault_id ON credentials(vault_id);
+CREATE INDEX IF NOT EXISTS idx_credentials_vault_id ON credentials(vault_id);
 
-CREATE INDEX idx_credentials_site ON credentials(site);
+CREATE INDEX IF NOT EXISTS idx_credentials_site ON credentials(app);
