@@ -4,8 +4,6 @@ CREATE TABLE IF NOT EXISTS users (
 
     password_hash TEXT NOT NULL,
 
-    password_salt TEXT,
-
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     last_login TEXT
 );

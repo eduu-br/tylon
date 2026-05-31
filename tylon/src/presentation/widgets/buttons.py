@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QPushButton
 
-with open("src\\presentation\\styles\\widgets.qss") as f:
+with open(".\\tylon\\src\\presentation\\styles\\widgets.qss") as f:
     style = f.read()
 
 

@@ -3,7 +3,7 @@ from .connection import get_connection
 
 db_path = os.getenv("LOCALAPPDATA") + "\\.tylon\\tylon.db"  # type: ignore
 
-with open(".\\src\\infrastructure\\database\\schema.sql") as f:
+with open(".\\tylon\\src\\infrastructure\\database\\schema.sql") as f:
     schema = f.read()
 
 

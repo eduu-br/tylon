@@ -3,19 +3,19 @@ from PySide6.QtCore import Qt, Signal
 from tylon.src.presentation.widgets.buttons import Button
 from tylon.src.presentation.widgets.text_input_field import InputText
 from tylon.src.presentation.widgets.clickable_label import ClickableLabel
-from tylon.src.presentation.viewmodels.login_viewmodel import LoginViewmodel
-from tylon.src.domain.value_objects.login_return_code import AuthReturnCode
-from tylon.src.domain.value_objects.auth_type import Auth
+from tylon.src.presentation.viewmodels.login_viewmodel import AuthViewmodel
+from tylon.src.application.enums.auth_return_code import AuthReturnCode
+from tylon.src.application.enums.auth_mode import AuthMode
 
-with open("src\\presentation\\styles\\login_window.qss") as f:
+with open(".\\tylon\\src\\presentation\\styles\\login_window.qss") as f:
     style = f.read()
 
 
-class LoginWindow(QWidget):
+class AuthWindow(QWidget):
 
-    def __init__(self, vm: LoginViewmodel):
+    def __init__(self, vm: AuthViewmodel):
         super().__init__()
-        self.auth_type = Auth.LOGIN
+        self.auth_mode = AuthMode.LOGIN
         self.vm = vm
 
         self.setStyleSheet(style)
@@ -87,7 +87,7 @@ class LoginWindow(QWidget):
         self.title.setText("login for tylon")
         self.auth_button.setText("login")
         self.create_acc_container.show()
-        self.auth_type = Auth.LOGIN
+        self.auth_mode = AuthMode.LOGIN
 
     def on_return1(self):
         self.input_password.lineedit.setCursorPosition(
@@ -96,20 +96,21 @@ class LoginWindow(QWidget):
         self.input_password.lineedit.setFocus()
 
     def on_register(self):
-        self.auth_type = Auth.REGISTER
+        self.auth_mode = AuthMode.REGISTER
         self.title.setText("register for tylon")
         self.auth_button.setText("register")
         self.cancel_button.show()
         self.create_acc_container.hide()
 
+    # todo: arrumar isso aqui
     def on_auth_pressed(self):
         username = self.input_username.text()
         password = self.input_password.text()
 
-        code = self.vm.auth(self.auth_type, username, password)
+        code = self.vm.auth(self.auth_mode, username, password)
 
         match code:
-            case AuthReturnCode.SUCCESSFUL:
+            case AuthReturnCode.SUCCESS:
                 self.input_username.lineedit.setProperty("state", "ok")
                 self.input_username.lineedit.style().unpolish(
                     self.input_username.lineedit
@@ -145,4 +146,3 @@ class LoginWindow(QWidget):
                     self.input_password.lineedit
                 )
                 self.input_password.lineedit.update()
-        print("aaaaa")

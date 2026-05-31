@@ -1,18 +1,19 @@
-from tylon.src.domain.value_objects.login_return_code import AuthReturnCode
-from tylon.src.domain.value_objects.auth_type import Auth
+from tylon.src.application.enums.auth_return_code import AuthReturnCode
+from tylon.src.application.enums.auth_mode import AuthMode
+from tylon.src.application.use_cases.authenticate_user import AuthenticateUserUseCase
 
 
-class LoginViewmodel:
+class AuthViewmodel:
 
     def auth(
-        self, auth_type: Auth, username: str, password: str
+        self, auth_type: AuthMode, username: str, password: str
     ) -> list[AuthReturnCode]:
-        if auth_type == Auth.LOGIN:
+        if auth_type == AuthMode.LOGIN:
             return self.login(username, password)
-        elif auth_type == Auth.REGISTER:
+        elif auth_type == AuthMode.REGISTER:
             return self.register(username, password)
         else:
-            raise Exception("how did it get here")
+            return [AuthReturnCode.FAILED]
 
     def login(self, username: str, password: str):
         ret = []
@@ -25,7 +26,7 @@ class LoginViewmodel:
             return ret
 
         # todo: logica de login
-        ret.append(AuthReturnCode.SUCCESSFUL)
+        ret.append(AuthReturnCode.SUCCESS)
         return ret
 
     def register(self, username: str, password: str):
@@ -38,6 +39,6 @@ class LoginViewmodel:
         if ret:
             return ret
 
-        # todo:logica de auth
-        ret.append(AuthReturnCode.SUCCESSFUL)
+        # todo:logica de register
+        ret.append(AuthReturnCode.SUCCESS)
         return ret

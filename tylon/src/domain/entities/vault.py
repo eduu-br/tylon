@@ -1,28 +1,13 @@
-from .credential import Credential
+from dataclasses import dataclass
 from typing import overload
+from tylon.src.domain.value_objects.vault_id import VaultID
+from tylon.src.domain.value_objects.user_id import UserID
+from datetime import datetime
 
 
+@dataclass
 class Vault:
-
-    def __init__(self) -> None:
-        self._credentials: list[Credential] = []
-
-    def add_credential(self, credential: Credential, /) -> None:
-        if not isinstance(credential, Credential):
-            raise TypeError(
-                f"invalid argument type: {type(credential)}, expected {Credential.__class__}"
-            )
-        self._credentials.append(credential)
-
-    def remove_credential(self, credential_id: int, /) -> None:
-        for cr in self._credentials:
-            if cr.id == credential_id:
-                self._credentials.remove(cr)
-                return
-        raise ValueError(f"invalid credential id")
-
-    def search(self, id: int):
-
-        for cr in self._credentials:
-            if cr.id == id:
-                return cr
+    id: VaultID
+    user_id: UserID
+    name: str
+    created_at: datetime

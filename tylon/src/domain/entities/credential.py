@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 from datetime import datetime
+from tylon.src.domain.value_objects.credential_id import CredentialID
 
 
 @dataclass
 class Credential:
-    id: int
+    id: CredentialID
     vault_id: int
     title: str
     username: str

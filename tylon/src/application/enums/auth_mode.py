@@ -1,6 +1,6 @@
 import enum
 
 
-class Auth(enum.Enum):
+class AuthMode(enum.Enum):
     LOGIN = enum.auto()
     REGISTER = enum.auto()
