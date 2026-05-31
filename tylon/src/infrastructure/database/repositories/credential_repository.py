@@ -1,5 +1,5 @@
-from src.domain.entities.credential import Credential
-from src.domain.interfaces.repositories import CredentialRepository
+from tylon.src.domain.entities.credential import Credential
+from tylon.src.domain.interfaces.repositories import CredentialRepository
 from sqlite3 import Connection
 
 

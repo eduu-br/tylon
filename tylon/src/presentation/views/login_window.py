@@ -1,11 +1,11 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QHBoxLayout
 from PySide6.QtCore import Qt, Signal
-from src.presentation.widgets.buttons import Button
-from src.presentation.widgets.text_input_field import InputText
-from src.presentation.widgets.clickable_label import ClickableLabel
-from src.presentation.viewmodels.login_viewmodel import LoginViewmodel
-from src.domain.value_objects.login_return_code import AuthReturnCode
-from src.domain.value_objects.auth_type import Auth
+from tylon.src.presentation.widgets.buttons import Button
+from tylon.src.presentation.widgets.text_input_field import InputText
+from tylon.src.presentation.widgets.clickable_label import ClickableLabel
+from tylon.src.presentation.viewmodels.login_viewmodel import LoginViewmodel
+from tylon.src.domain.value_objects.login_return_code import AuthReturnCode
+from tylon.src.domain.value_objects.auth_type import Auth
 
 with open("src\\presentation\\styles\\login_window.qss") as f:
     style = f.read()

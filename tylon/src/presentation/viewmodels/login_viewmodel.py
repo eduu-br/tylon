@@ -1,5 +1,5 @@
-from src.domain.value_objects.login_return_code import AuthReturnCode
-from src.domain.value_objects.auth_type import Auth
+from tylon.src.domain.value_objects.login_return_code import AuthReturnCode
+from tylon.src.domain.value_objects.auth_type import Auth
 
 
 class LoginViewmodel:

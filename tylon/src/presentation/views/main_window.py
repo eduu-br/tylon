@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
-from src.presentation.widgets.buttons import Button
+from tylon.src.presentation.widgets.buttons import Button
 
 with open(".\\src\\presentation\\styles\\main_window.qss") as f:
     style = f.read()
