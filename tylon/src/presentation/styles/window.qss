@@ -4,9 +4,37 @@
     font-size: 22px;
 }
 
+
+
+#minimize_button {
+    background-color: #2C2B3C;
+}
+
+#minimize_button::hover {
+    background-color: #21202d;
+}
+
+#close_button {
+    background-color: #2C2B3C;
+}
+
+#close_button::hover {
+    background-color: red;
+}
+
+#toolbar {
+    margin: 0;
+    padding: 0;
+}
+
 QWidget {
     background-color: #121420;
-    margin: 0;
+}
+
+#window {
+    border: 2px solid #171925;
+    border-radius: 12px;
+
 }
 
 InputText QLabel {
@@ -28,7 +56,7 @@ InputText QLineEdit[state="ok"] {
 }
 
 InputText QLineEdit::focus {
-    border-color: #fff;
+    border-color: #969696;
 }
 
 InputText QLineEdit[state="error"] {
@@ -42,7 +70,7 @@ InputText QLineEdit[state="error"] {
     font-weight: 100;
 }
 
-Button {
+QPushButton {
     background-color: #157113;
     font-family: sans-serif;
     font-weight: bold;
@@ -51,11 +79,11 @@ Button {
     margin: 0;
 }
 
-Button::hover {
+QPushButton::hover {
     background-color: #0f520e;
 }
 
-Button::pressed {
+QPushButton::pressed {
     background-color: #0b390a;
 }
 
@@ -77,4 +105,9 @@ Button::pressed {
 
 #register::hover {
     color: #2d5dc4;
+}
+
+#info {
+    color: red;
+    font-size: 10px;
 }

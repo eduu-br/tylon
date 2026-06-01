@@ -1,15 +1,12 @@
-from tylon.src.infrastructure.database.repositories.user_repository import (
-    SQLiteUserRepository,
-)
-from tylon.src.infrastructure.database.connection import get_connection
+from tylon.src.domain.interfaces.abc_user_repository import UserRepository
 from tylon.src.application.enums.auth_return_code import AuthReturnCode
-from tylon.src.infrastructure.crypto.hashing import Hashing
+from tylon.src.infrastructure.crypto.hashing import Hasher
 
 
 class AuthenticateUserUseCase:
-    def __init__(self) -> None:
-        self._repo = SQLiteUserRepository(get_connection())
-        self._hasher = Hashing()
+    def __init__(self, user_repository: UserRepository, hasher: Hasher) -> None:
+        self._repo = user_repository
+        self._hasher = hasher
 
     def register_user(self, username: str, password: str, /):
         if self._repo.get_username(username) is not None:
@@ -21,7 +18,7 @@ class AuthenticateUserUseCase:
         user = self._repo.get_username(username)
         if user is None:
             return AuthReturnCode.LOGIN_INCORRECT_USERNAME
-        if self._hasher.verify(user.password_hash, password):
+        if self._hasher.verify(password, user.password_hash):
             return AuthReturnCode.SUCCESS
         else:
             return AuthReturnCode.LOGIN_INCORRECT_PASSWORD
