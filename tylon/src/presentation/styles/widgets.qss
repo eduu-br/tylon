@@ -1,0 +1,8 @@
+QWidget#vault_widget {
+    color: red;
+    background-color: red;
+}
+
+VaultWidget QLabel {
+    font-size: 30px;
+}

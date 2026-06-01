@@ -18,7 +18,7 @@ with open(".\\tylon\\src\\presentation\\styles\\window.qss") as f:
 
 
 class AuthWindow(QWidget):
-    login_sucessful = Signal()
+    login_successful = Signal()
 
     def __init__(self, vm: AuthViewmodel):
         super().__init__()
@@ -177,13 +177,15 @@ class AuthWindow(QWidget):
                 self.show_login()
                 self.input_username.lineedit.clear()
                 self.input_password.lineedit.clear()
+                self.set_ok_input(self.input_username)
+                self.set_ok_input(self.input_password)
+                return
 
             self.set_ok_input(self.input_username)
             self.set_ok_input(self.input_password)
 
-            self.login_sucessful.emit()
+            self.login_successful.emit()
             self.close()
-            # todo: implementar a mudança para mainwindow
 
             return
 

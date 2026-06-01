@@ -4,8 +4,6 @@
     font-size: 22px;
 }
 
-
-
 #minimize_button {
     background-color: #2C2B3C;
 }
@@ -27,14 +25,12 @@
     padding: 0;
 }
 
-QWidget {
-    background-color: #121420;
-}
+
 
 #window {
+    background-color: #121420;
     border: 2px solid #171925;
     border-radius: 12px;
-
 }
 
 InputText QLabel {

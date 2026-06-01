@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton
 
 from tylon.src.presentation.widgets.toolbar import TopToolbar
+from tylon.src.presentation.widgets.vault_widget import VaultWidget
 from PySide6.QtCore import Qt
 
 with open(".\\tylon\\src\\presentation\\styles\\window.qss") as f:
@@ -31,7 +32,9 @@ class MainWindow(QMainWindow):
 
         main_layout.addStretch()
 
-        main_layout.addWidget(QPushButton("texto"))
+        vw = VaultWidget()
+
+        main_layout.addWidget(vw)
 
         main_layout.addStretch()
 

@@ -2,12 +2,20 @@ from tylon.src.application.enums.auth_return_code import AuthReturnCode
 from tylon.src.presentation.viewmodels.auth_mode import AuthMode
 from tylon.src.application.use_cases.authenticate_user import AuthenticateUserUseCase
 from tylon.src.domain.interfaces.abc_user_repository import UserRepository
+from tylon.src.application.session.session_manager import SessionManager
 from tylon.src.infrastructure.crypto.hashing import Hasher
 
 
 class AuthViewmodel:
 
-    def __init__(self, user_repository: UserRepository, hasher: Hasher) -> None:
+    def __init__(
+        self,
+        user_repository: UserRepository,
+        hasher: Hasher,
+        session_manager: SessionManager,
+    ) -> None:
+        self._user_repository = user_repository
+        self._session_manager = session_manager
         self.auth_use_case = AuthenticateUserUseCase(user_repository, hasher)
 
     def auth(
@@ -32,9 +40,11 @@ class AuthViewmodel:
 
         result = self.auth_use_case.login_user(username, password)
 
-        # todo: logica de session manager
         if result == AuthReturnCode.SUCCESS:
-            ...
+            user = self._user_repository.get_username(username)
+            if user is None:
+                return [AuthReturnCode.FAILED]
+            self._session_manager.login(user)
 
         code_stack.append(result)
         return code_stack
